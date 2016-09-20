@@ -1,0 +1,59 @@
+<!doctype html>
+<head>
+	<title> Registrarse </title>
+	
+	<style type="text/css">
+		<!--
+			h1{color: #B40404; text-align: center; font: small-caps bold 300% serif}
+			p{text-align: center;}
+			a{font: small-caps bold 120% serif;}
+			body{background-color: #E6E6E6}
+			form{font: small-caps 120% serif; margin-left: 10em; margin-right: 10em}
+		-->
+	</style>
+	
+	<script>
+	function vervalores(){
+		var sAux="";
+		var frm = document.getElementById("registro");
+		for (i=0;i<frm.elements.length;i++){
+			sAux += "NOMBRE: " + frm.elements[i].name + " "; sAux += "VALOR: " + frm.elements[i].value + "\n" ;
+		}
+		alert(sAux);
+	}
+	</script>
+</head>
+<body>
+
+	<h1> REGISTRO </h1>
+
+	<form id='registro' name='registro' onSubmit='vervalores()'>
+		<label for="nombre">Nombre(*): </label>
+             		<input type="text" id="nombre" name="Nombre"><br>
+    		<label for="apellidos">Apellidos(*): </label>
+              		<input type="text" id="apellidos" name="Apellidos"><br>
+		<label for="correo">Direccion de correo(*): </label>
+              		<input type="text" id="correo" name="Correo"> <br>
+    		<label for="contraseña">Contraseña(*): </label>
+			<input type="password" id="contraseña" name="Contraseña"> <br>
+		<label for="telefono">Numero de telefono(*): </label>
+			<input type="text" id="telefono" name="Telefono"><br>
+		<label for="especialidad">Especialidad(*): </label>
+			<input type="text" id="especialidad" name="Especialidad"><br>
+		<label for="opcional">Tecnologías y herramientas en las que está interesado (opcional): </label>
+			<textarea id="opcional" name="Opcional" rows="7" cols="80"> </textarea> <br>
+			<br>
+		<label for="imagen">Imagen (Opcional): </label>
+			<input type="file" id="imagen" name="imagen" accept="image/*">
+		<p align="center">
+   		<input type="submit" value="ENVIAR" name="submit"> 
+		&nbsp;
+		&nbsp;
+		&nbsp;
+		<input type="reset" value="BORRAR" name="reset">
+		</p>
+	</form>
+	<br>
+	<p> <a href="layout.html"> Página principal </a>
+	</p>
+</body>
