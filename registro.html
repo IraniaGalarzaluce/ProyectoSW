@@ -1,18 +1,20 @@
 <!doctype html>
+<html>
 <head>
 	<title> Registrarse </title>
-	
 	<style type="text/css">
 		<!--
 			h1{color: #B40404; text-align: center; font: small-caps bold 300% serif}
 			p{text-align: center;}
-			a{font: small-caps bold 120% serif;}
-			body{background-color: #E6E6E6}
+			a{text-align : center; font: small-caps bold 120% serif}
+			body{background-color : #E6E6E6}
 			form{font: small-caps 120% serif; margin-left: 10em; margin-right: 10em}
 		-->
 	</style>
 	
-	<script>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	
+	<script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/1B74BD89-2A22-4B93-B451-1C9E1052A0EC/main.js" charset="UTF-8"></script><script>
 	function vervalores(){
 		var sAux="";
 		var frm = document.getElementById("registro");
@@ -22,38 +24,157 @@
 		alert(sAux);
 	}
 	</script>
+	
+	<script language="javascript">
+	function verificar(){
+		var nombre=document.getElementById("nombre").value;
+		var apellidos=document.getElementById("apellidos").value;
+		var correo=document.getElementById("correo").value;
+		var contraseña=document.getElementById("password").value;
+		var telefono=document.getElementById("telefono").value;
+		var especialidad=document.getElementById("especialidad");
+		if (nombre.length == 0){
+			alert("El campo del nombre está vacío");
+			return false;
+		}
+		if (apellidos.length == 0){
+			alert("El campo de apellidos está vacío");
+			return false;
+		}
+		if (!/^[a-zA-Z]+(\s)+[a-zA-Z]+$/.test(apellidos)){
+			alert("Debes poner dos apellidos");
+			return false;
+		}
+		if (correo.length == 0){
+			alert("El campo del correo está vacío");
+			return false;
+		}
+		if (!/^[a-z]{2,}[0-9]{3}@ikasle\.ehu\.(eus|es)$/.test(correo)){
+			alert("El correo no es válido, tiene que tener el formato de la UPV/EHU");
+			return false;
+		}
+		if (contraseña.length == 0){
+			alert("El campo de la contraseña está vacío");
+			return false;
+		}
+		if (contraseña.length < 6){
+			alert("La contraseña debe contener al menos 6 caracteres");
+			return false;
+		}
+		if (telefono.length == 0){
+			alert("El campo del telefono está vacío");
+			return false;
+		}
+		if (!/^(6|7|9){1}[0-9]{8}$/.test(telefono)){
+			alert("Teléfono no valido: debe comenzar por 9, 7 ó 6 y tener 9 digitos");
+			return false;
+		}
+		
+		if (especialidad.options[especialidad.selectedIndex].value.localeCompare("Otro") == 0){
+			var otro = document.getElementById("otraEspecialidad").value;
+			if (otro.length == 0){
+				alert("El campo de la especialidad está vacío");
+				return false;
+			}
+		}
+		
+		var seleccionado = false;
+		
+		return true;
+	}
+
+	function textoDinamico(valor){
+		if(valor.localeCompare("Otro") == 0) 
+			return aceptar('otraEspecialidad', 'otraEspecialidad', 'colocarCaja');
+		else 
+			return cancelar ('otraEspecialidad', 'colocarCaja');
+	}
+	
+	function aceptar(id, nombre, lugar){
+		var nuevoL = document.getElementById (lugar);
+		var nuevo = document.createElement ("INPUT");
+		nuevo.setAttribute("type","text");
+		nuevo.setAttribute("id",id);
+		nuevo.setAttribute("name", nombre);
+		nuevoL.appendChild(nuevo);
+	}
+	
+	function cancelar(id, lugar){
+		var lugarCaja = document.getElementById (lugar);
+		var cajaTexto = document.getElementById (id);
+		lugarCaja.removeChild(cajaTexto);
+	}
+
+	function fotoDinamica(im){
+		if (im.files && im.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(){
+					var output = document.getElementById('avatar');
+					output.src = reader.result;
+			};
+			reader.readAsDataURL(im.files[0]);
+		}
+	}
+		
+	</script>
+	
 </head>
 <body>
 
 	<h1> REGISTRO </h1>
 
-	<form id='registro' name='registro' onSubmit='vervalores()'>
+	<form id='registro' name='registro' onsubmit="return verificar()" action='Registrar.php' method="post">
+	
 		<label for="nombre">Nombre(*): </label>
-             		<input type="text" id="nombre" name="Nombre"><br>
-    		<label for="apellidos">Apellidos(*): </label>
-              		<input type="text" id="apellidos" name="Apellidos"><br>
-		<label for="correo">Direccion de correo(*): </label>
-              		<input type="text" id="correo" name="Correo"> <br>
-    		<label for="contraseña">Contraseña(*): </label>
-			<input type="password" id="contraseña" name="Contraseña"> <br>
-		<label for="telefono">Numero de telefono(*): </label>
-			<input type="text" id="telefono" name="Telefono"><br>
+        <input type="text" id="nombre" name="Nombre"><br>
+		
+    	<label for="apellidos">Apellidos(*): </label>
+        <input type="text" id="apellidos" name="Apellidos"><br>
+		
+		<label for="correo">Direcci&oacute;n de correo(*): </label>
+        <input type="text" id="correo" name="Correo"> <br>
+		
+    	<label for="password">Contraseña(*): </label>
+		<input type="password" id="password" name="Password"> <br>
+		
+		<label for="telefono">N&uacute;mero de tel&eacute;fono(*): </label>
+		<input type="text" id="telefono" name="Telefono"><br>
+		
 		<label for="especialidad">Especialidad(*): </label>
-			<input type="text" id="especialidad" name="Especialidad"><br>
-		<label for="opcional">Tecnologías y herramientas en las que está interesado (opcional): </label>
-			<textarea id="opcional" name="Opcional" rows="7" cols="80"> </textarea> <br>
-			<br>
+		<select name="Especialidad" id="especialidad" onchange = "textoDinamico(this.options[this.selectedIndex].value)" onload="this.selectedIndex=1">
+			<option selected value = "Ingenieria del Software">Ingenier&iacute;a del Software</option>
+			<option value = "Ingenieria de Computadores">Ingenier&iacute;a de Computadores</option>
+			<option value = "Computacion">Computaci&oacute;n</option>
+			<option value = "Otro">Otro</option>
+		</select> 
+		<br>
+			
+		<br>
+		<div id = "colocarCaja"> </div>
+		<br>
+			
+		<label for="opcional">Tecnolog&iacute;as y herramientas en las que est&aacute; interesado (opcional): </label>
+		<textarea id="opcional" name="Opcional" rows = "7" cols = "80"> </textarea> <br>
+		<br>
+		
 		<label for="imagen">Imagen (Opcional): </label>
-			<input type="file" id="imagen" name="imagen" accept="image/*">
+		<input type="file" id="imagen" name="imagen" accept="image/*" onchange="fotoDinamica(this)" onload="this.value=null">
+		<br>
+		
+		<p> <img src = "avatar.png" id = "avatar" width="150" height="150"> </p>
+		<br>
+		
 		<p align="center">
    		<input type="submit" value="ENVIAR" name="submit"> 
 		&nbsp;
 		&nbsp;
-		&nbsp;
 		<input type="reset" value="BORRAR" name="reset">
 		</p>
+		
 	</form>
 	<br>
-	<p> <a href="layout.html"> Página principal </a>
-	</p>
+	
+	<p> <a href="layout.html"> P&aacute;gina principal </a> </p>
+	
 </body>
+</html>
