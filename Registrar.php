@@ -25,6 +25,13 @@
 		$esp = $_POST['otraEspecialidad'];
 	}
 	
+	$validar = array(
+             "options" => array("regexp"=>'/^[a-z]{2,}[0-9]{3}@ikasle\.ehu\.(eus|es)$/')
+        );
+	if(!filter_var($_POST['Correo'], FILTER_VALIDATE_REGEXP, $validar)){
+		die('Error: El correo introducido no cumple el formato de la UPV/EHU. Vuelve a intentar registrarte por favor.');
+	}
+	
 	$sql="INSERT INTO usuario VALUES ('$_POST[Nombre]', '$_POST[Apellidos]', '$_POST[Correo]', '$_POST[Password]', '$_POST[Telefono]', '$esp', '$_POST[Opcional]', '$file' )";
 
 	if (!mysqli_query($link ,$sql)){
