@@ -63,6 +63,11 @@
 		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
 		die();
 	}
+	if(!validarExpresion($_POST['Password'], '/^.{6,}$/')){
+		echo '<br> <br> <p> Error: La contraseña debe de tener al menos 6 caracteres. </p> <br> <br>';
+		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
+		die();
+	}
 	if(!validaRequerido($_POST['Telefono'])){
 		echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
 		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
@@ -73,7 +78,6 @@
 		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
 		die();
 	}
-	
 	$esp = $_POST['Especialidad'];
 	if(strcmp($esp, "Otro") == 0){
 		if(!validaRequerido($_POST['otraEspecialidad'])){
