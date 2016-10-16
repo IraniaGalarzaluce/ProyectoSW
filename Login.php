@@ -42,7 +42,7 @@
 		mysqli_close($link);
 			
 		if($cont==1){
-			header('location:InsertarPregunta.php');
+			header('location:layout2.html');
 		}
 		else {
 			echo "<p> <FONT COLOR=RED>Datos incorrectos !!</FONT> </p>";

@@ -25,7 +25,7 @@
 		echo '<tr><td>' . $row['Pregunta'] . '</td> <td>' . $row['Respuesta'].'</td><td>' . $comp.'</td><td>'. $row['Correo'].'</td></tr>';
 	}
 	echo '</table>';
-	echo ' <br> <br> <p> <a href="layout.html"> Pagina principal </a> </p>';
+	echo ' <br> <br> <p> <a href="layout2.html"> Pagina principal </a> </p>';
 	
 	mysqli_free_result($preguntas);
 	mysqli_close($link);

@@ -26,7 +26,7 @@
 		<p> <input id="input_2" type="submit" />
 	</form>
 	
-	<p> <a href="layout.html"> Pagina principal </a> </p>
+	<p> <a href="layout2.html"> Pagina principal </a> </p>
 </body>
 </html>
 
@@ -114,7 +114,7 @@
 			<br>
 			<br>";
 			echo "<p> Pregunta añadida. </p>";
-			echo '<br> <br> <p> <a href="verPreguntas.php"> Ver preguntas </a> </p>';
+			echo '<br> <br> <p> <a href="verPreguntas2.php"> Ver preguntas </a> </p>';
 			
 		}
 		else{
