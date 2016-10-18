@@ -1,4 +1,3 @@
-
 <html>
   <head>
    	<title>Añadir pregunta</title>
@@ -20,19 +19,20 @@
 		<p> Respuesta(*) : <input type="text" required name="respuesta" size="21" value="" />
 		<p> Complejidad (1-5): <input type="text" name="complejidad" size="21" value="" />
 		<br>
-		<p> Email(*) : <input type="email" required name="email" size="21" value="" />
+		<input type="hidden" name="email" value="<?php echo $_REQUEST['email']; ?>" />
 		<p> Password(*): <input type="password" required name="pass" size="21" value="" />
 		<br>
 		<p> <input id="input_2" type="submit" />
 	</form>
-	
-	<p> <a href="layout2.html"> Pagina principal </a> </p>
+	<?php
+		echo '<p><a href="layout2.php?email=' . $_REQUEST['email'] . '"> Pagina principal </a></p>';
+	?>
 </body>
 </html>
 
 <?php
-
-	if (isset($_POST['email'])){
+	
+	if (isset($_POST['pass'])){
 		$link = mysqli_connect("localhost", "root", "", "quiz");
 		//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
 		
@@ -57,22 +57,12 @@
 			}
 		}
 		
-		if(!validaRequerido($_POST['email'])){
-				echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
-				die();
-		}
-		
 		if(!validaRequerido($_POST['pass'])){
 				echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
 				die();
 		}
 		
-		//if(!validarExpresion($_POST['email'], '/^[a-z]{2,}[0-9]{3}@ikasle\.ehu\.(eus|es)$/')){
-			//	echo '<br> <br> <p> Error: La complejidad debe ser un número del 1 al 5. </p> <br> <br>';
-				//die();
-		//}
-		
-		$email=$_POST['email']; 
+		$email=$_REQUEST['email']; 
 		$pass=$_POST['pass'];
 		
 		$usuarios = mysqli_query($link,"select * from usuario where correo='$email' and password='$pass'");
@@ -97,13 +87,7 @@
 				}
 			}
 			
-			
-			$usuarios = mysqli_query($link,"select * from pregunta");
-			$cont= mysqli_num_rows($usuarios); 
-			
-			$cod = $cont+1;
-			
-			$sql="INSERT INTO pregunta VALUES ('$cod', '$_POST[pregunta]', '$_POST[respuesta]', '$_POST[complejidad]', '$email' )";
+			$sql="INSERT INTO pregunta(Pregunta, Respuesta, Complejidad, Correo) VALUES ('$_POST[pregunta]', '$_POST[respuesta]', '$_POST[complejidad]', '$email' )";
 
 			if (!mysqli_query($link ,$sql)){
 				die('Error: ' . mysqli_error($link));
@@ -114,7 +98,23 @@
 			<br>
 			<br>";
 			echo "<p> Pregunta añadida. </p>";
-			echo '<br> <br> <p> <a href="verPreguntas2.php"> Ver preguntas </a> </p>';
+			echo '<br> <br> <p> <a href="verPreguntas2.php?email=' . $email. '"> Ver preguntas </a> </p>';
+			
+			$horaAccion = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+			$ip = $_SERVER["REMOTE_ADDR"];
+			
+			if(!($ids = mysqli_query($link, "SELECT max(IdConexion) as id FROM conexiones WHERE Correo='$email'"))){
+				die('Error: ' . mysqli_error($link));
+			}
+			$row = mysqli_fetch_array($ids);
+			$idconex = $row['id'];
+			
+			$tipo = "insertar pregunta";
+	
+			$sql="INSERT INTO acciones(IdConexion, Correo, Tipo, Hora, IP) VALUES ('$idconex', '$email', '$tipo', '$horaAccion', '$ip' )";
+			if (!mysqli_query($link ,$sql)){
+				die('Error: ' . mysqli_error($link));
+			}
 			
 		}
 		else{

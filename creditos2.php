@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 	<head>
 		<title> Creditos </title>
@@ -22,14 +22,17 @@
 				<td> Irati Galarza </td>
 			</tr>
 			<tr>
-				<td> Ingeniería del Software </td>
-				<td> Ingeniería del Software </td>
+				<td> Ingenier&iacute;a del Software </td>
+				<td> Ingenier&iacute;a del Software </td>
 			</tr>
 		</table>
 		<br>
 		<br>
-		<p>
-		<a href = "layout2.html"> Página principal </a>
-		</P>
+	
+		<?php
+			$email = $_REQUEST['email'] ;
+			echo '<p><a href="layout2.php?email=' . $email. '"> Pagina principal </a></p>'
+		?>
+		
 	</body>
 </html>

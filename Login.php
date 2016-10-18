@@ -30,6 +30,9 @@
 
 <?php
 	if (isset($_POST['email'])){
+		
+		//phpinfo();
+		
 		$link = mysqli_connect("localhost", "root", "", "quiz");
 		//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
 	
@@ -39,13 +42,21 @@
 		$usuarios = mysqli_query($link,"select * from usuario where correo='$email' and password='$pass'");
 		
 		$cont= mysqli_num_rows($usuarios); 
-		mysqli_close($link);
 			
 		if($cont==1){
-			header('location:layout2.html');
+			$horaConex = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
+			$sql="INSERT INTO conexiones(Correo, Hora) VALUES ('$email', '$horaConex' )";
+			if (!mysqli_query($link ,$sql)){
+				die('Error: ' . mysqli_error($link));
+			}
+			
+			header("location:layout2.php?email=$email");
+
 		}
 		else {
 			echo "<p> <FONT COLOR=RED>Datos incorrectos !!</FONT> </p>";
 		}
+		
+		mysqli_close($link);
 	}
 ?>
