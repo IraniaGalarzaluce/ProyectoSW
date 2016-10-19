@@ -16,6 +16,10 @@
   <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
+		<?php
+			$email = $_GET['email']; 
+			echo $email
+		?>
       	<span class="right"><a href="layout.html" >Logout</a></span>
 		<h2>Quiz: el juego de las preguntas</h2>
     </header>
