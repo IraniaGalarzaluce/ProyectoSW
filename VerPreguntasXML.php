@@ -18,10 +18,9 @@
 	
 	foreach ($xml->children() as $pregunta){
 		echo "<tr>";
-		$enunciado = $pregunta->itemBody->p;
-		echo "<td>" . $enunciado . "</td>";
+		echo "<td>" . $pregunta->itemBody->p . "</td>";
 		echo "<td width='50%'>". $pregunta['complexity'] ."</td>";
-		echo "<td>" . $pregunta['subject']. "</td>";
+		echo "<td>" . $pregunta['subject'] . "</td>";
 		echo "</tr>";
 	}
 

@@ -25,7 +25,4 @@
 <assessmentItem complexity="2" subject="De todo un poco"><itemBody><p>Otra pregunta</p></itemBody><correctResponse><value>Otra respuesta</value></correctResponse></assessmentItem>
 <assessmentItem complexity="4" subject="Ninguno"><itemBody><p>jksahdakjsdh</p></itemBody><correctResponse><value>kjhadjkashdkajs</value></correctResponse></assessmentItem>
 <assessmentItem complexity="2" subject="dsfgdsfg"><itemBody><p>fdasfasd</p></itemBody><correctResponse><value>fasdfsadf</value></correctResponse></assessmentItem>
-<assessmentItem complexity="3" subject="dfgsdfg"><itemBody><p>dfgdfg</p></itemBody><correctResponse><value>dgdsfgdsfg</value></correctResponse></assessmentItem>
-<assessmentItem complexity="3" subject="asdfsdfs"><itemBody><p>sdfsdfsdf</p></itemBody><correctResponse><value>asdsfsdfsd</value></correctResponse></assessmentItem>
-<assessmentItem complexity="4" subject="sdasdasdasd"><itemBody><p>&#xBF;asdasdasdasd?</p></itemBody><correctResponse><value>dasdasdasdas</value></correctResponse></assessmentItem>
-<assessmentItem complexity="1" subject="fhgfg"><itemBody><p>&#xBF;&#xBF;&#xBF;???</p></itemBody><correctResponse><value>sssss</value></correctResponse></assessmentItem></assessmentItems>
+<assessmentItem complexity="3" subject="dfgsdfg"><itemBody><p>dfgdfg</p></itemBody><correctResponse><value>dgdsfgdsfg</value></correctResponse></assessmentItem><assessmentItem complexity="3" subject="asdfsdfs"><itemBody><p>sdfsdfsdf</p></itemBody><correctResponse><value>asdsfsdfsd</value></correctResponse></assessmentItem></assessmentItems>

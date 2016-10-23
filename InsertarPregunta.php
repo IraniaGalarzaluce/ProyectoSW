@@ -1,6 +1,6 @@
 <html>
   <head>
-   	<title>A&ntilde;adir pregunta</title>
+   	<title>Añadir pregunta</title>
 	
 	<style type="text/css">
 		<!--
@@ -13,7 +13,7 @@
 	</style>
 </head>
 <body>
-	<h1> A&Ntilde;ADIR PREGUNTA </h1>
+	<h1> AÑADIR PREGUNTA </h1>
 	<form method="post">
 		<p> Pregunta(*) : <input type="text" required name="pregunta" size="21" value="" />
 		<p> Respuesta(*) : <input type="text" required name="respuesta" size="21" value="" />
@@ -23,7 +23,7 @@
 		<input type="hidden" name="email" value="<?php echo $_REQUEST['email']; ?>" />
 		<p> Password(*): <input type="password" required name="pass" size="21" value="" />
 		<br>
-		<p> <input id="input_2" type="submit" value="Añadir"/>
+		<p> <input id="input_2" type="submit" />
 	</form>
 	<?php
 		echo '<p><a href="layout2.php?email=' . $_REQUEST['email'] . '"> Pagina principal </a></p>';
@@ -103,7 +103,7 @@
 			<br>
 			<br>
 			<br>";
-			echo "<p> Pregunta a&ntilde;adida. </p>";
+			echo "<p> Pregunta añadida. </p>";
 			echo '<br> <br> <p> <a href="VerPreguntasXML.php?email=' . $email. '"> Ver preguntas </a> </p>';
 			
 			$xml = simplexml_load_file('preguntas.xml');
