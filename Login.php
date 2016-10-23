@@ -19,10 +19,10 @@
 	<form action="Login.php" method="post">
 		<p> Email : <input type="email" required name="email" size="21" value="" />
 		<p> Password: <input type="password" required name="pass" size="21" value="" />
-		<p> <input id="input_2" type="submit" />
+		<p> <input id="input_2" type="submit" value="Enviar"/>
 	</form>
 	
-	<p> <a href="layout.html"> Página principal </a> </p>
+	<p> <a href="layout.html"> P&aacute;gina principal </a> </p>
 	
 </body>
 
@@ -30,8 +30,6 @@
 
 <?php
 	if (isset($_POST['email'])){
-		
-		//phpinfo();
 		
 		$link = mysqli_connect("localhost", "root", "", "quiz");
 		//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
