@@ -1,8 +1,9 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no" ?>
+<?xml-stylesheet type="text/xsl" href="VerPreguntas.xsl" ?>
 <assessmentItems>
 	<assessmentItem complexity="2" subject="Web">
 		<itemBody>
-			<p>Tag HTML para a&#xF1;adir un formulario</p>
+			<p>Tag HTML para añadir un formulario</p>
 		</itemBody>
 		<correctResponse>
 			<value>
@@ -10,10 +11,10 @@
 			</value>
 		</correctResponse>
 	</assessmentItem>
-	<assessmentItem complexity="4" subject="Internet">
+		<assessmentItem complexity="4" subject="Internet">
 		<itemBody>
-			<p>Este protocolo acabar&#xE1; funcionando
-			incluso entre dos latas unidas por un cord&#xF3;n</p>
+			<p>Este protocolo acabara funcionando
+			incluso entre dos latas unidas por un cordon</p>
 		</itemBody>
 		<correctResponse>
 			<value>
@@ -21,8 +22,4 @@
 			</value>
 		</correctResponse>
 	</assessmentItem>
-<assessmentItem complexity="1" subject="General"><itemBody><p>Una pregunta</p></itemBody><correctResponse><value>Una respuesta</value></correctResponse></assessmentItem>
-<assessmentItem complexity="2" subject="De todo un poco"><itemBody><p>Otra pregunta</p></itemBody><correctResponse><value>Otra respuesta</value></correctResponse></assessmentItem>
-<assessmentItem complexity="4" subject="Ninguno"><itemBody><p>jksahdakjsdh</p></itemBody><correctResponse><value>kjhadjkashdkajs</value></correctResponse></assessmentItem>
-<assessmentItem complexity="2" subject="dsfgdsfg"><itemBody><p>fdasfasd</p></itemBody><correctResponse><value>fasdfsadf</value></correctResponse></assessmentItem>
-<assessmentItem complexity="3" subject="dfgsdfg"><itemBody><p>dfgdfg</p></itemBody><correctResponse><value>dgdsfgdsfg</value></correctResponse></assessmentItem><assessmentItem complexity="3" subject="asdfsdfs"><itemBody><p>sdfsdfsdf</p></itemBody><correctResponse><value>asdsfsdfsd</value></correctResponse></assessmentItem></assessmentItems>
+<assessmentItem complexity="5" subject="Filosofia"><itemBody><p>Es esto una pregunta</p></itemBody><correctResponse><value>Solo si esto es una respuesta</value></correctResponse></assessmentItem><assessmentItem complexity="5" subject="Biologia avanzada"><itemBody><p>Soy pequeño, soy blandito y mi casa llevo sobre el lomito</p></itemBody><correctResponse><value>El caracol xD</value></correctResponse></assessmentItem></assessmentItems>
