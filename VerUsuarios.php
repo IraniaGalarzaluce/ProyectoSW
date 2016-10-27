@@ -4,18 +4,9 @@
 	//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
 	
 	$usuarios = mysqli_query($link, "select * from usuario" );
-	echo '<style type="text/css">
-		<!--
-			h1{color: #B40404; text-align: center; font: small-caps bold 300% serif}
-			p{text-align: center;}
-			table{margin: 0 auto;}
-			td{width: 250px; text-align: center; font: 120% serif}
-			a{font: small-caps bold 120% serif;}
-			body{background-color: #E6E6E6}
-		-->
-		</style>
+	echo "<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css/>
 		<h1> USUARIOS </h1>
-		<br>';
+		<br>";
 	echo '<table border=1> <tr> <th> NOMBRE </th> <th> APELLIDOS </th><th> CORREO </th><th> TELEFONO </th>
 		<th> ESPECIALIDAD </th><th> INTERESES </th><th> IMAGEN </th></tr>';
 	while ($row = mysqli_fetch_array( $usuarios )) {

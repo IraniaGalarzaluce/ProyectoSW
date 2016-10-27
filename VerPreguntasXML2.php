@@ -17,6 +17,6 @@
 
 	echo "</table>";
 	
-	echo ' <br> <br> <p> <a href="layout.php?email=' . $_REQUEST['email'] . '"> Pagina principal </a> </p>';
+	echo ' <br> <br> <p> <a href="layout2.php?email=' . $_REQUEST['email'] . '"> Pagina principal </a> </p>';
 
 ?>

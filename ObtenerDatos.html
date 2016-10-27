@@ -1,6 +1,7 @@
 <HTML>
 <HEAD>
 	<title> Obtener datos</title>
+	<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
 	<script type="text/javascript">
 		function completar(){
 			var enc=false;
@@ -32,6 +33,7 @@
 	</script>
 </HEAD>
 <BODY>
+	<h1>  Obtener Datos </h1>
 	<div align="center">
 		<OBJECT id="datos" data="usuarios.xml" type="text/xml" style="display:none"> </OBJECT>
 		<FORM METHOD="POST" ACTION="insertar.php">
@@ -43,7 +45,7 @@
 			<INPUT TYPE="TEXT" NAME="apellido1" id="apellido1"><BR>
 			Segundo Apellido <BR>
 			<INPUT TYPE="TEXT" NAME="apellido2" id="apellido2"><BR>
-			Teléfono <BR>
+			Tel&eacute;fono <BR>
 			<INPUT TYPE="TEXT" NAME="telefono" id="telefono" maxlength="9" pattern="[0-9]{9}" />
 			<br><br>
 			<INPUT TYPE="button" value="Autocompletar" onClick="javascript:completar()">

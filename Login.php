@@ -1,16 +1,7 @@
 <html>
 <head>
 	<title> Login </title>
-	
-	<style type="text/css">
-		<!--
-			h1{color: #B40404; text-align: center; font: small-caps bold 300% serif}
-			p{text-align: center;}
-			body{background-color : #E6E6E6}
-			a{text-align : center; font: small-caps bold 120% serif}
-			form{font: small-caps 120% serif; margin-left: 10em; margin-right: 10em}
-		-->
-	</style>
+	<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
 		
 </head>
 <body>
