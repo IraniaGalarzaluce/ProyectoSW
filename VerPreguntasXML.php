@@ -2,7 +2,8 @@
 
 	$xml = simplexml_load_file('preguntas.xml');
 	
-	echo "<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
+	echo "<meta charset='utf-8'>
+		<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
 		<h1> PREGUNTAS </h1>
 		<br>";
 	echo '<table border=1> <tr> <th> PREGUNTA </th> <th> COMPLEJIDAD </th><th> TEMA </th></tr>';

@@ -25,7 +25,8 @@
 		}
 	}
 	
-	echo "<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>";
+	echo "<meta charset='utf-8'>
+		<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>";
 	
 	if (!validaRequerido($_POST['Nombre'])) {
 		echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';

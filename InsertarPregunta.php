@@ -1,30 +1,5 @@
-<html>
-  <head>
-   	<title>Añadir pregunta</title>
-	<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
-</head>
-<body>
-	<h1> AÑADIR PREGUNTA </h1>
-	<form method="post">
-		<p> Pregunta(*) : <input type="text" required name="pregunta" size="21" value="" />
-		<p> Respuesta(*) : <input type="text" required name="respuesta" size="21" value="" />
-		<p> Complejidad (1-5): <input type="text" name="complejidad" size="21" value="" />
-		<p> Tema(*) : <input type="text" required name="tema" size="21" value="" />
-		<br>
-		<input type="hidden" name="email" value="<?php echo $_REQUEST['email']; ?>" />
-		<p> Password(*): <input type="password" required name="pass" size="21" value="" />
-		<br>
-		<p> <input id="input_2" type="submit" />
-	</form>
-	<?php
-		echo '<p><a href="layout2.php?email=' . $_REQUEST['email'] . '"> Pagina principal </a></p>';
-	?>
-</body>
-</html>
-
 <?php
-	
-	if (isset($_POST['pass'])){
+		sleep(2);
 		$link = mysqli_connect("localhost", "root", "", "quiz");
 		//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
 		
@@ -90,12 +65,8 @@
 				die('Error: ' . mysqli_error($link));
 			}
 			
-			echo "
-			<br>
-			<br>
-			<br>";
 			echo "<p> Pregunta añadida. </p>";
-			echo '<br> <br> <p> <a href="VerPreguntasXML.php?email=' . $email. '"> Ver preguntas </a> </p>';
+			//echo '<br> <br> <p> <a href="VerPreguntasXML.php?email=' . $email. '"> Ver preguntas en formato XML </a> </p> <br>';
 			
 			$xml = simplexml_load_file('preguntas.xml');
 			$pregunta = $xml->addChild('assessmentItem');
@@ -130,5 +101,4 @@
 		}
 		
 		mysqli_close($link);
-	}
 ?>

@@ -4,7 +4,8 @@
 	//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
 	
 	$usuarios = mysqli_query($link, "select * from usuario" );
-	echo "<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css/>
+	echo "<meta charset='utf-8'>
+		<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css/>
 		<h1> USUARIOS </h1>
 		<br>";
 	echo '<table border=1> <tr> <th> NOMBRE </th> <th> APELLIDOS </th><th> CORREO </th><th> TELEFONO </th>

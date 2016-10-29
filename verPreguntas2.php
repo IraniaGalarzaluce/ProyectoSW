@@ -3,7 +3,8 @@
 	$link= mysqli_connect("localhost", "root", "", "quiz");
 	//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
 	
-	echo "<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
+	echo "<meta charset='utf-8'>
+		<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
 		<h1> PREGUNTAS </h1>
 		<br>";
 	echo '<table border=1> <tr> <th> PREGUNTA </th> <th> COMPLEJIDAD </th><th> AUTOR </th></tr>';
@@ -18,7 +19,7 @@
 	}
 	echo '</table>';
 	$email = $_GET['email'];
-	echo ' <br> <br> <p> <a href="layout2.php?email=' . $email . '"> Pagina principal </a> </p>';
+	//echo ' <br> <br> <p> <a href="layout2.php?email=' . $email . '"> Pagina principal </a> </p>';
 	
 	mysqli_free_result($preguntas);
 	

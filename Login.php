@@ -2,7 +2,7 @@
 <head>
 	<title> Login </title>
 	<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
-		
+	<meta charset="utf-8">
 </head>
 <body>
 	<h1> LOGIN </h1>

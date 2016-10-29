@@ -26,8 +26,8 @@
 	<?php
 		$email = $_GET['email']; 
 		echo '<span><a href="layout2.php?email='. $email. '">Inicio</a></spam>';
-		echo '<span><a href="verPreguntas2.php?email=' . $email . '">Ver preguntas</a></spam>';
-		echo '<span><a href="InsertarPregunta.php?email=' . $email . '">Insertar pregunta</a></spam>';
+		echo '<span><a href="VerPreguntasXML2.php?email=' . $email. '"> Ver preguntas</a><span>';
+		echo '<span><a href="GestionPreguntas.php?email=' . $email . '">Editar preguntas</a></spam>';
 		echo '<span><a href="creditos2.php?email=' . $email . '">Creditos</a></spam>';
 	?>
 
