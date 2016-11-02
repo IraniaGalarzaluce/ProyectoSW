@@ -3,8 +3,22 @@
 	<title> Editar preguntas</title>
 	<meta charset='utf-8'>
 	<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			setInterval(function(){ 
+				$.get("preguntasUsuario.php?email=" + $("#email").val(), 
+					function (data) {
+           				$("#divR").html(data);	
+           			});
+			}, 3000);
+		});
+	</script>
+
 	<script language = "javascript">
-	
+
 		function verP(){
 			var emailUsuario = document.getElementById("email").value;
 			xmlhttp = new XMLHttpRequest();
@@ -21,7 +35,7 @@
 				case 4: document.getElementById('estado').innerHTML ="<b>Completado!</b>";
 					document.getElementById("divV").innerHTML = xmlhttp.responseText;
 					break;
-}
+				}
 			}
 			xmlhttp.open("GET","verPreguntas2.php?email=" + emailUsuario,true);
 			xmlhttp.send();
@@ -93,6 +107,10 @@
 </HEAD>
 <BODY>
 	<div align="center">
+		<h1> Gestión de preguntas</h1>
+		<br>
+		<div id="divR">	</div>
+		<br><br>
 		<OBJECT id="datos" data="GestionPreguntas.php" type="text/xml" style="display:none"> </OBJECT>
 		<FORM METHOD="POST">
 			Pregunta* <BR>
@@ -123,13 +141,3 @@
 	</div>
 </BODY>
 </HTML>
-
-
-
-<?php 
-
-
-
-
-?>
-

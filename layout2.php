@@ -25,10 +25,10 @@
 	<nav class='main' id='n1' role='navigation'>
 	<?php
 		$email = $_GET['email']; 
-		echo '<span><a href="layout2.php?email='. $email. '">Inicio</a></spam>';
+		echo '<span><a href="layout2.php?email='. $email. '">Inicio</a></span>';
 		echo '<span><a href="VerPreguntasXML2.php?email=' . $email. '"> Ver preguntas</a><span>';
-		echo '<span><a href="GestionPreguntas.php?email=' . $email . '">Editar preguntas</a></spam>';
-		echo '<span><a href="creditos2.php?email=' . $email . '">Creditos</a></spam>';
+		echo '<span><a href="GestionPreguntas.php?email=' . $email . '">Editar preguntas</a></span>';
+		echo '<span><a href="creditos2.php?email=' . $email . '">Creditos</a></span>';
 	?>
 
 	</nav>
