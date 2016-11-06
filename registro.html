@@ -23,23 +23,23 @@
 				switch(xmlhttp.readyState) { 
 				case 0: document.getElementById('correoSW').innerHTML = "Sin iniciar..."; 
 					break;
-				case 1: document.getElementById('correoSW').innerHTML ="<b>Cargando...</b>"; 
+				case 1: document.getElementById('correoSW').innerHTML ="<b>Comprobando...</b>"; 
 					break;
-				case 2: document.getElementById('correoSW').innerHTML ="<b>Cargado...</b>"; 
+				case 2: document.getElementById('correoSW').innerHTML ="<b>Comprobado...</b>"; 
 					break;
 				case 3: document.getElementById('correoSW').innerHTML = "Interactivo..."; 
 					break;
 				case 4:
-					document.getElementById("correoSW").innerHTML = xmlhttp.responseText;
-				//	var valido = "SI";
-				//	var resultado = xmlhttp.responseText;
-				//	if(valido.localeCompare(resultado) == 0){
-				//		document.getElementById("correoSW").innerHTML = "El correo es válido, puede continuar";
-				//	}
-				//	else{
-				//		document.getElementById("correoSW").innerHTML = "Este correo no está matriculado en Ingeniería del Software.";
-				//		document.getElementById("submit").disabled = true; 
-				//	}
+					var valido = "SI";
+					var resultado = xmlhttp.responseText;
+					if(valido.localeCompare(resultado) == 0){
+						document.getElementById("correoSW").innerHTML = "El correo es v&aacute;lido, puede continuar.";
+						document.getElementById("submit").disabled = false;
+					}
+					else{
+						document.getElementById("correoSW").innerHTML = "Lo sentimos, este correo no est&aacute; matriculado en Ingenier&iacute;a del Software.";
+						document.getElementById("submit").disabled = true; 
+					}
 					break;
 				}
 			}
@@ -47,27 +47,37 @@
 			xmlhttp.send();
 		}
 
-		//function validarPass(){
-		//	var passwordUsuario = document.getElementById("password").value;
-		//	xmlhttp = new XMLHttpRequest();
-		//	xmlhttp.onreadystatechange = function(){
-		//		switch(xmlhttp.readyState) { 
-		//		case 0: document.getElementById('estado').innerHTML = "Sin iniciar..."; 
-		//			break;
-		//		case 1: document.getElementById('estado').innerHTML ="<b>Cargando...</b>"; 
-		//			break;
-		//		case 2: document.getElementById('estado').innerHTML ="<b>Cargado...</b>"; 
-		//			break;
-		//		case 3: document.getElementById('estado').innerHTML = "Interactivo..."; 
-		//			break;
-		//		case 4: document.getElementById('estado').innerHTML ="<b>Completado!</b>";
-		//			document.getElementById("passValida").innerHTML = xmlhttp.responseText;
-		//			break;
-		//		}
-		//	}
-		//	xmlhttp.open("GET","validarPassword.php?email=" + passwordUsuario,true);
-		//	xmlhttp.send();
-		//}
+		function validarPass(){
+			var passwordUsuario = document.getElementById("password").value;
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function(){
+				switch(xmlhttp.readyState) { 
+				case 0: document.getElementById('passValida').innerHTML = "Sin iniciar..."; 
+					break;
+				case 1: document.getElementById('passValida').innerHTML ="<b>Comprobando...</b>"; 
+					break;
+				case 2: document.getElementById('passValida').innerHTML ="<b>Comprobado...</b>"; 
+					break;
+				case 3: document.getElementById('passValida').innerHTML = "Interactivo..."; 
+					break;
+				case 4:
+					//document.getElementById("passValida").innerHTML = xmlhttp.responseText;
+					var valido = "VALIDA";
+					var resultado = xmlhttp.responseText;
+					if(valido.localeCompare(resultado) == 0){
+						document.getElementById("passValida").innerHTML = "La contrase&ntilde;a es suficientemente segura, puede continuar.";
+						document.getElementById("submit").disabled = false;
+					}
+					else{
+						document.getElementById("passValida").innerHTML = "Lo sentimos, esta contrase&ntilde;a no es lo suficientemente segura.";
+						document.getElementById("submit").disabled = true; 
+					}
+					break;
+				}
+			}
+			xmlhttp.open("GET","validarPassword.php?pass=" + passwordUsuario,true);
+			xmlhttp.send();
+		}
 		
 		</script>
 		
@@ -76,7 +86,7 @@
 			var nombre=document.getElementById("nombre").value;
 			var apellidos=document.getElementById("apellidos").value;
 			var correo=document.getElementById("correo").value;
-			var contraseña=document.getElementById("password").value;
+			var contrasena=document.getElementById("password").value;
 			var telefono=document.getElementById("telefono").value;
 			var especialidad=document.getElementById("especialidad");
 			if (nombre.length == 0){
@@ -99,11 +109,11 @@
 				alert("El correo no es válido, tiene que tener el formato de la UPV/EHU");
 				return false;
 			}
-			if (contraseña.length == 0){
+			if (contrasena.length == 0){
 				alert("El campo de la contraseña está vacío");
 				return false;
 			}
-			if (contraseña.length < 6){
+			if (contrasena.length < 6){
 				alert("La contraseña debe contener al menos 6 caracteres");
 				return false;
 			}
@@ -183,8 +193,8 @@
 		<div id="correoSW" class="comprobar">	</div>
 		<br>
 		
-    	<label for="password">Contraseña(*) sdfsdfsdfsdfsdf: </label>
-		<input type="password" id="password" name="Password"> <br>
+    	<label for="password">Contrase&ntilde;a(*): </label>
+		<input type="password" id="password" name="Password" onchange="validarPass()"> <br>
 
 		<br>
 		<div id="passValida" class="comprobar">	</div>

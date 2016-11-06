@@ -35,7 +35,6 @@ form{
 }
 
 div.comprobar{
-	color: #B40404;
-	text-align: center;
-	font: 100% serif;
+	color: dimgrey; 
+	font: bold 80% serif;
 }

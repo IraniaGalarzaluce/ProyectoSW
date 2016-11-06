@@ -1,3 +1,4 @@
+
 <?php
 
 	$link = mysqli_connect("localhost", "root", "", "quiz");
@@ -52,6 +53,19 @@
 		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
 		die();
 	}
+	
+	require_once('lib/nusoap.php');
+	require_once('lib/class.wsdlcache.php');
+
+	$soapclient = new nusoap_client( 'http://sw14.hol.es/ServiciosWeb/comprobarmatricula.php?wsdl',true);
+	$email = $_POST['Correo'];
+	$result = $soapclient->call('comprobar', array('x'=>$email));
+	if (strcmp($result, "NO") == 0){
+		echo '<br> <br> <p> Error: El correo introducido no está matriculado en SW. Vuelve a intentar registrarte por favor. </p> <br> <br>';
+		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
+		die();
+	}
+	
 	if(!validaRequerido($_POST['Password'])){
 		echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
 		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
@@ -62,6 +76,16 @@
 		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
 		die();
 	}
+
+	$soapclient2 = new nusoap_client('http://localhost/ProyectoSW/ComprobarContrasena.php?wsdl',true);
+	$pass = $_POST['Password'];
+	$result2 = $soapclient2->call('comprobar',  array('pass'=>$pass));
+	if (strcmp($result2, "INVALIDA") == 0){
+		echo '<br> <br> <p> Error: La contraseña no es lo suficientemente segura. Vuelva a intentarlo por favor. </p> <br> <br>';
+		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
+		die();
+	}
+
 	if(!validaRequerido($_POST['Telefono'])){
 		echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
 		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
