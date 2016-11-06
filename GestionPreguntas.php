@@ -63,7 +63,7 @@
 				case 4: document.getElementById('estado').innerHTML ="<b>Completado!</b>";
 					document.getElementById("divI").innerHTML = xmlhttp.responseText;
 					break;
-}
+				}
 			}
 				xmlhttp.open("POST","InsertarPregunta.php",true);
 				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");	

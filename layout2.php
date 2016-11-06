@@ -45,3 +45,26 @@
 </div>
 </body>
 </html>
+<?php
+
+//span > a{
+//   	text-align: center;
+//   	text-decoration: none;
+//   	font: 100% serif;
+//   	color:black;
+//}
+
+//span > a:hover{
+//   	color: #B40404;
+//}
+
+//header a{
+//	display:inline;
+//  padding: 8px 16px;
+//}
+
+//section.main a{
+//	display:block;
+//  padding: 8px 16px;
+//}
+?>

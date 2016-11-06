@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 <head>
 	<title> Registrarse </title>
@@ -8,107 +7,160 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
 	<script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/1B74BD89-2A22-4B93-B451-1C9E1052A0EC/main.js" charset="UTF-8"></script><script>
-	function vervalores(){
-		var sAux="";
-		var frm = document.getElementById("registro");
-		for (i=0;i<frm.elements.length;i++){
-			sAux += "NOMBRE: " + frm.elements[i].name + " "; sAux += "VALOR: " + frm.elements[i].value + "\n" ;
-		}
-		alert(sAux);
-	}
-	</script>
-	
-	<script language="javascript">
-	function verificar(){
-		var nombre=document.getElementById("nombre").value;
-		var apellidos=document.getElementById("apellidos").value;
-		var correo=document.getElementById("correo").value;
-		var contraseña=document.getElementById("password").value;
-		var telefono=document.getElementById("telefono").value;
-		var especialidad=document.getElementById("especialidad");
-		if (nombre.length == 0){
-			alert("El campo del nombre está vacío");
-			return false;
-		}
-		if (apellidos.length == 0){
-			alert("El campo de apellidos está vacío");
-			return false;
-		}
-		if (!/^[a-zA-Z]+(\s)+[a-zA-Z]+$/.test(apellidos)){
-			alert("Debes poner dos apellidos");
-			return false;
-		}
-		if (correo.length == 0){
-			alert("El campo del correo está vacío");
-			return false;
-		}
-		if (!/^[a-z]{2,}[0-9]{3}@ikasle\.ehu\.(eus|es)$/.test(correo)){
-			alert("El correo no es válido, tiene que tener el formato de la UPV/EHU");
-			return false;
-		}
-		if (contraseña.length == 0){
-			alert("El campo de la contraseña está vacío");
-			return false;
-		}
-		if (contraseña.length < 6){
-			alert("La contraseña debe contener al menos 6 caracteres");
-			return false;
-		}
-		if (telefono.length == 0){
-			alert("El campo del telefono está vacío");
-			return false;
-		}
-		if (!/^(6|7|9){1}[0-9]{8}$/.test(telefono)){
-			alert("Teléfono no valido: debe comenzar por 9, 7 ó 6 y tener 9 digitos");
-			return false;
+		function vervalores(){
+			var sAux="";
+			var frm = document.getElementById("registro");
+			for (i=0;i<frm.elements.length;i++){
+				sAux += "NOMBRE: " + frm.elements[i].name + " "; sAux += "VALOR: " + frm.elements[i].value + "\n" ;
+			}
+			alert(sAux);
 		}
 		
-		if (especialidad.options[especialidad.selectedIndex].value.localeCompare("Otro") == 0){
-			var otro = document.getElementById("otraEspecialidad").value;
-			if (otro.length == 0){
-				alert("El campo de la especialidad está vacío");
+		function validarC(){
+			var emailUsuario = document.getElementById("correo").value;
+			xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function(){
+				switch(xmlhttp.readyState) { 
+				case 0: document.getElementById('correoSW').innerHTML = "Sin iniciar..."; 
+					break;
+				case 1: document.getElementById('correoSW').innerHTML ="<b>Cargando...</b>"; 
+					break;
+				case 2: document.getElementById('correoSW').innerHTML ="<b>Cargado...</b>"; 
+					break;
+				case 3: document.getElementById('correoSW').innerHTML = "Interactivo..."; 
+					break;
+				case 4:
+					document.getElementById("correoSW").innerHTML = xmlhttp.responseText;
+				//	var valido = "SI";
+				//	var resultado = xmlhttp.responseText;
+				//	if(valido.localeCompare(resultado) == 0){
+				//		document.getElementById("correoSW").innerHTML = "El correo es válido, puede continuar";
+				//	}
+				//	else{
+				//		document.getElementById("correoSW").innerHTML = "Este correo no está matriculado en Ingeniería del Software.";
+				//		document.getElementById("submit").disabled = true; 
+				//	}
+					break;
+				}
+			}
+			xmlhttp.open("GET","validarCorreo.php?email=" + emailUsuario,true);
+			xmlhttp.send();
+		}
+
+		//function validarPass(){
+		//	var passwordUsuario = document.getElementById("password").value;
+		//	xmlhttp = new XMLHttpRequest();
+		//	xmlhttp.onreadystatechange = function(){
+		//		switch(xmlhttp.readyState) { 
+		//		case 0: document.getElementById('estado').innerHTML = "Sin iniciar..."; 
+		//			break;
+		//		case 1: document.getElementById('estado').innerHTML ="<b>Cargando...</b>"; 
+		//			break;
+		//		case 2: document.getElementById('estado').innerHTML ="<b>Cargado...</b>"; 
+		//			break;
+		//		case 3: document.getElementById('estado').innerHTML = "Interactivo..."; 
+		//			break;
+		//		case 4: document.getElementById('estado').innerHTML ="<b>Completado!</b>";
+		//			document.getElementById("passValida").innerHTML = xmlhttp.responseText;
+		//			break;
+		//		}
+		//	}
+		//	xmlhttp.open("GET","validarPassword.php?email=" + passwordUsuario,true);
+		//	xmlhttp.send();
+		//}
+		
+		</script>
+		
+		<script language="javascript">
+		function verificar(){
+			var nombre=document.getElementById("nombre").value;
+			var apellidos=document.getElementById("apellidos").value;
+			var correo=document.getElementById("correo").value;
+			var contraseña=document.getElementById("password").value;
+			var telefono=document.getElementById("telefono").value;
+			var especialidad=document.getElementById("especialidad");
+			if (nombre.length == 0){
+				alert("El campo del nombre está vacío");
 				return false;
 			}
+			if (apellidos.length == 0){
+				alert("El campo de apellidos está vacío");
+				return false;
+			}
+			if (!/^[a-zA-Z]+(\s)+[a-zA-Z]+$/.test(apellidos)){
+				alert("Debes poner dos apellidos");
+				return false;
+			}
+			if (correo.length == 0){
+				alert("El campo del correo está vacío");
+				return false;
+			}
+			if (!/^[a-z]{2,}[0-9]{3}@ikasle\.ehu\.(eus|es)$/.test(correo)){
+				alert("El correo no es válido, tiene que tener el formato de la UPV/EHU");
+				return false;
+			}
+			if (contraseña.length == 0){
+				alert("El campo de la contraseña está vacío");
+				return false;
+			}
+			if (contraseña.length < 6){
+				alert("La contraseña debe contener al menos 6 caracteres");
+				return false;
+			}
+			if (telefono.length == 0){
+				alert("El campo del telefono está vacío");
+				return false;
+			}
+			if (!/^(6|7|9){1}[0-9]{8}$/.test(telefono)){
+				alert("Teléfono no valido: debe comenzar por 9, 7 ó 6 y tener 9 digitos");
+				return false;
+			}
+			
+			if (especialidad.options[especialidad.selectedIndex].value.localeCompare("Otro") == 0){
+				var otro = document.getElementById("otraEspecialidad").value;
+				if (otro.length == 0){
+					alert("El campo de la especialidad está vacío");
+					return false;
+				}
+			}
+			
+			var seleccionado = false;
+			
+			return true;
+		}
+
+		function textoDinamico(valor){
+			if(valor.localeCompare("Otro") == 0) 
+				return aceptar('otraEspecialidad', 'otraEspecialidad', 'colocarCaja');
+			else 
+				return cancelar ('otraEspecialidad', 'colocarCaja');
 		}
 		
-		var seleccionado = false;
-		
-		return true;
-	}
-
-	function textoDinamico(valor){
-		if(valor.localeCompare("Otro") == 0) 
-			return aceptar('otraEspecialidad', 'otraEspecialidad', 'colocarCaja');
-		else 
-			return cancelar ('otraEspecialidad', 'colocarCaja');
-	}
-	
-	function aceptar(id, nombre, lugar){
-		var nuevoL = document.getElementById (lugar);
-		var nuevo = document.createElement ("INPUT");
-		nuevo.setAttribute("type","text");
-		nuevo.setAttribute("id",id);
-		nuevo.setAttribute("name", nombre);
-		nuevoL.appendChild(nuevo);
-	}
-	
-	function cancelar(id, lugar){
-		var lugarCaja = document.getElementById (lugar);
-		var cajaTexto = document.getElementById (id);
-		lugarCaja.removeChild(cajaTexto);
-	}
-
-	function fotoDinamica(im){
-		if (im.files && im.files[0]){
-			var reader = new FileReader();
-			reader.onload = function(){
-					var output = document.getElementById('avatar');
-					output.src = reader.result;
-			};
-			reader.readAsDataURL(im.files[0]);
+		function aceptar(id, nombre, lugar){
+			var nuevoL = document.getElementById (lugar);
+			var nuevo = document.createElement ("INPUT");
+			nuevo.setAttribute("type","text");
+			nuevo.setAttribute("id",id);
+			nuevo.setAttribute("name", nombre);
+			nuevoL.appendChild(nuevo);
 		}
-	}
 		
+		function cancelar(id, lugar){
+			var lugarCaja = document.getElementById (lugar);
+			var cajaTexto = document.getElementById (id);
+			lugarCaja.removeChild(cajaTexto);
+		}
+
+		function fotoDinamica(im){
+			if (im.files && im.files[0]){
+				var reader = new FileReader();
+				reader.onload = function(){
+						var output = document.getElementById('avatar');
+						output.src = reader.result;
+				};
+				reader.readAsDataURL(im.files[0]);
+			}
+		}
 	</script>
 	
 </head>
@@ -125,10 +177,18 @@
         <input type="text" id="apellidos" name="Apellidos"><br>
 		
 		<label for="correo">Direcci&oacute;n de correo(*): </label>
-        <input type="text" id="correo" name="Correo"> <br>
+        <input type="text" id="correo" name="Correo" onchange = "validarC()"> <br>
 		
-    	<label for="password">Contraseña(*): </label>
+		<br>
+		<div id="correoSW" class="comprobar">	</div>
+		<br>
+		
+    	<label for="password">Contraseña(*) sdfsdfsdfsdfsdf: </label>
 		<input type="password" id="password" name="Password"> <br>
+
+		<br>
+		<div id="passValida" class="comprobar">	</div>
+		<br>
 		
 		<label for="telefono">N&uacute;mero de tel&eacute;fono(*): </label>
 		<input type="text" id="telefono" name="Telefono"><br>
@@ -158,7 +218,7 @@
 		<br>
 		
 		<p align="center">
-   		<input type="submit" value="ENVIAR" name="submit"> 
+   		<input type="submit" value="ENVIAR" name="submit" id="submit"> 
 		&nbsp;
 		&nbsp;
 		<input type="reset" value="BORRAR" name="reset">
