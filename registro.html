@@ -7,6 +7,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
 	<script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/1B74BD89-2A22-4B93-B451-1C9E1052A0EC/main.js" charset="UTF-8"></script><script>
+		var passCorrecto = false;
+		var correoCorrecto = false;
+
 		function vervalores(){
 			var sAux="";
 			var frm = document.getElementById("registro");
@@ -33,13 +36,21 @@
 					var valido = "SI";
 					var resultado = xmlhttp.responseText;
 					if(valido.localeCompare(resultado) == 0){
-						document.getElementById("correoSW").innerHTML = "El correo es v&aacute;lido, puede continuar.";
-						document.getElementById("submit").disabled = false;
+						document.getElementById("correoSW").innerHTML = "El correo es v&aacute;lido.";
+						correoCorrecto=true;
 					}
 					else{
 						document.getElementById("correoSW").innerHTML = "Lo sentimos, este correo no est&aacute; matriculado en Ingenier&iacute;a del Software.";
-						document.getElementById("submit").disabled = true; 
+						correoCorrecto = false; 
 					}
+
+					if (correoCorrecto && passCorrecto){
+						document.getElementById("submit").disabled = false;
+					}
+					else{
+						document.getElementById("submit").disabled = true;
+					}
+
 					break;
 				}
 			}
@@ -65,12 +76,19 @@
 					var valido = "VALIDA";
 					var resultado = xmlhttp.responseText;
 					if(valido.localeCompare(resultado) == 0){
-						document.getElementById("passValida").innerHTML = "La contrase&ntilde;a es suficientemente segura, puede continuar.";
-						document.getElementById("submit").disabled = false;
+						document.getElementById("passValida").innerHTML = "La contrase&ntilde;a es suficientemente segura.";
+						passCorrecto = true; 
 					}
 					else{
 						document.getElementById("passValida").innerHTML = "Lo sentimos, esta contrase&ntilde;a no es lo suficientemente segura.";
-						document.getElementById("submit").disabled = true; 
+						passCorrecto = false; 
+					}
+
+					if (correoCorrecto && passCorrecto){
+						document.getElementById("submit").disabled = false;
+					}
+					else{
+						document.getElementById("submit").disabled = true;
 					}
 					break;
 				}
