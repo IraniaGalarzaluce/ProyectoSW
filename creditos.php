@@ -1,7 +1,6 @@
-
 <html>
 	<head>
-		<title> Creditos </title>
+		<title> Cr&eacute;ditos </title>
 		<meta charset='utf-8'>
 		<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
 		<script language = "javascript">
@@ -42,23 +41,26 @@
 		</table>
 		<br>
 		<br>
-		<center>
+		
 		<form method = "POST" action = "creditos.php">
+			<center>
 			<input type = "submit" name = "submit" value = "Geolocalizaci&oacute;n">
+			</center>
 		</form>
-		</center>
-	<?php
+
+		<?php
 		if(isset($_POST['submit'])){
 			require_once('lib/nusoap.php');
 			require_once('lib/class.wsdlcache.php');
-			
 			$soapservidor = new nusoap_client( 'http://v1.fraudlabs.com/ip2locationwebservice.asmx?wsdl', true);
 			
 			$parms = array("IP" => "85.84.30.170","LICENSE" => "02-DG42-QEXG");
 			$servidor = $soapservidor->call('IP2Location', array($parms));
+
+			echo "<p class='geo'>";
 			
-			echo "Ubicaci&oacute;n del servidor." . "<br>";
-			echo "Pa&iacute;s: " . $servidor["COUNTRYNAME"] . ". Regi&oacute;n: " . $servidor["REGION"] . ". Ciudad: " . $servidor["CITY"] . "<br>";
+			echo "Ubicaci&oacute;n del servidor:" . "<br> ";
+			echo "Pa&iacute;s: " . $servidor["COUNTRYNAME"] . ". Regi&oacute;n: " . $servidor["REGION"] . ". Ciudad: " . $servidor["CITY"] . "<br><br>";
 			
 			$soapcliente = new nusoap_client( 'http://v1.fraudlabs.com/ip2locationwebservice.asmx?wsdl', true);
 	
@@ -67,12 +69,16 @@
 			$parmsC = array("IP" => $IP ,"LICENSE" => "02-DG42-QEXG");
 			$cliente = $soapcliente->call('IP2Location', array($parmsC));
 			
-			echo "Ubicación del cliente." . "<br>";
+			echo "Ubicaci&oacute;n del cliente:" . "<br>";
 			echo "Pa&iacute;s: " . $cliente["COUNTRYNAME"] .". Regi&oacute;n: ". $cliente["REGION"] .". Ciudad: ". $cliente["CITY"] . "<br>";
+
+			echo "</p>";
 		}
-		$email = $_REQUEST['email'] ;
-		echo '<p><a href="layout2.php?email=' . $email. '"> P&aacute;gina principal </a></p>'
-	?>
-		
+		?>
+		<br>
+		<br>
+		<p>
+		<a href = "layout.html"> P&aacute;gina principal </a>
+		</P>
 	</body>
 </html>
