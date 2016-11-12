@@ -3,7 +3,7 @@
 	if(!isset($_SESSION['email'])){
 		header("location:Login.php");
 	}
-	if($_SESSION['profesor']=='SI'){
+	if($_SESSION['profesor']!='SI'){
 		header("location:Login.php");
 	}
 ?>
@@ -32,8 +32,9 @@
 		<h2>Quiz: el juego de las preguntas</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href="layout2.php">Inicio</a></span>
-		<span><a href="GestionPreguntas.php">Editar preguntas</a></span>
+	<span><a href="layout2.php">Inicio</a></span>
+	<span><a href="RevisarPreguntas.php">Revisar preguntas</a></span>
+
 	</nav>
     <section class="main" id="s1">
     

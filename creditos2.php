@@ -4,28 +4,6 @@
 		<title> Creditos </title>
 		<meta charset='utf-8'>
 		<link rel='stylesheet' type='text/css' href='estilos/nuestroEstilo.css'/>
-		<script language = "javascript">
-			function geolocalizacion(){
-				xmlhttp = new XMLHttpRequest();
-				xmlhttp.onreadystatechange = function(){
-					switch(xmlhttp.readyState) { 
-					case 0: document.getElementById('estado').innerHTML = "Sin iniciar..."; 
-						break;
-					case 1: document.getElementById('estado').innerHTML ="<b>Cargando...</b>"; 
-						break;
-					case 2: document.getElementById('estado').innerHTML ="<b>Cargado...</b>"; 
-						break;
-					case 3: document.getElementById('estado').innerHTML = "Interactivo..."; 
-						break;
-					case 4: document.getElementById('estado').innerHTML ="<b>Completado!</b>";
-						document.getElementById("geo").innerHTML = xmlhttp.responseText;
-						break;
-					}
-				}
-				xmlhttp.open("GET","Geolocalizacion.php",true);
-				xmlhttp.send();
-			}
-		</script>
 	</head>
 	<body>
 		<h1> CR&Eacute;DITOS </h1>
@@ -54,7 +32,9 @@
 			
 			$soapservidor = new nusoap_client( 'http://v1.fraudlabs.com/ip2locationwebservice.asmx?wsdl', true);
 			
-			$parms = array("IP" => "85.84.30.170","LICENSE" => "02-DG42-QEXG");
+			$IPServ = $_SERVER['SERVER_ADDR'];
+
+			$parms = array("IP" => $IPServ,"LICENSE" => "02-DG42-QEXG");
 			$servidor = $soapservidor->call('IP2Location', array($parms));
 			
 			echo "Ubicaci&oacute;n del servidor." . "<br>";

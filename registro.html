@@ -7,9 +7,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
 	<script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/1B74BD89-2A22-4B93-B451-1C9E1052A0EC/main.js" charset="UTF-8"></script><script>
-		var passCorrecto = false;
-		var correoCorrecto = false;
-
 		function vervalores(){
 			var sAux="";
 			var frm = document.getElementById("registro");
@@ -36,21 +33,13 @@
 					var valido = "SI";
 					var resultado = xmlhttp.responseText;
 					if(valido.localeCompare(resultado) == 0){
-						document.getElementById("correoSW").innerHTML = "El correo es v&aacute;lido.";
-						correoCorrecto=true;
-					}
-					else{
-						document.getElementById("correoSW").innerHTML = "Lo sentimos, este correo no est&aacute; matriculado en Ingenier&iacute;a del Software.";
-						correoCorrecto = false; 
-					}
-
-					if (correoCorrecto && passCorrecto){
+						document.getElementById("correoSW").innerHTML = "El correo es v&aacute;lido, puede continuar.";
 						document.getElementById("submit").disabled = false;
 					}
 					else{
-						document.getElementById("submit").disabled = true;
+						document.getElementById("correoSW").innerHTML = "Lo sentimos, este correo no est&aacute; matriculado en Ingenier&iacute;a del Software.";
+						document.getElementById("submit").disabled = true; 
 					}
-
 					break;
 				}
 			}
@@ -76,19 +65,12 @@
 					var valido = "VALIDA";
 					var resultado = xmlhttp.responseText;
 					if(valido.localeCompare(resultado) == 0){
-						document.getElementById("passValida").innerHTML = "La contrase&ntilde;a es suficientemente segura.";
-						passCorrecto = true; 
-					}
-					else{
-						document.getElementById("passValida").innerHTML = "Lo sentimos, esta contrase&ntilde;a no es lo suficientemente segura.";
-						passCorrecto = false; 
-					}
-
-					if (correoCorrecto && passCorrecto){
+						document.getElementById("passValida").innerHTML = "La contrase&ntilde;a es suficientemente segura, puede continuar.";
 						document.getElementById("submit").disabled = false;
 					}
 					else{
-						document.getElementById("submit").disabled = true;
+						document.getElementById("passValida").innerHTML = "Lo sentimos, esta contrase&ntilde;a no es lo suficientemente segura.";
+						document.getElementById("submit").disabled = true; 
 					}
 					break;
 				}
@@ -97,6 +79,18 @@
 			xmlhttp.send();
 		}
 		
+		function validarPass2(){
+			var passwordUsuario = document.getElementById("password").value;
+			var passwordUsuario2 = document.getElementById("password2").value;
+			if (passwordUsuario.localeCompare(passwordUsuario2) == 0){
+				document.getElementById("passValida2").innerHTML = "Las contrase&ntilde;as coinciden, puede continuar.";
+				document.getElementById("submit").disabled = false; 
+			}
+			else{
+				document.getElementById("passValida2").innerHTML = "Lo sentimos, las contrase&ntilde;as no coinciden.";
+				document.getElementById("submit").disabled = true; 
+			}
+		}
 		</script>
 		
 		<script language="javascript">
@@ -213,9 +207,16 @@
 		
     	<label for="password">Contrase&ntilde;a(*): </label>
 		<input type="password" id="password" name="Password" onchange="validarPass()"> <br>
-
+		
 		<br>
 		<div id="passValida" class="comprobar">	</div>
+		<br>
+		
+		<label for="password2">Repita la contrase&ntilde;a(*): </label>
+		<input type="password" id="password2" name="Password2" onchange="validarPass2()"> <br>
+
+		<br>
+		<div id="passValida2" class="comprobar">	</div>
 		<br>
 		
 		<label for="telefono">N&uacute;mero de tel&eacute;fono(*): </label>

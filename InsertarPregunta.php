@@ -1,4 +1,12 @@
 <?php
+	session_start();
+	if(!isset($_SESSION['email'])){
+		header("location:Login.php");
+	}
+	if($_SESSION['profesor']=='SI'){
+		header("location:Login.php");
+	}
+
 		sleep(2);
 		$link = mysqli_connect("localhost", "root", "", "quiz");
 		//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
@@ -24,46 +32,34 @@
 			}
 		}
 		
-		if(!validaRequerido($_POST['pass'])){
-				echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
-				die();
+		$email=$_SESSION['email']; 
+		
+		if(!validaRequerido($_POST['pregunta'])){
+			echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
+			die();
 		}
-		
-		$email=$_REQUEST['email']; 
-		$pass=$_POST['pass'];
-		
-		$usuarios = mysqli_query($link,"select * from usuario where correo='$email' and password='$pass'");
-		
-		$cont= mysqli_num_rows($usuarios); 
-		
-		if($cont==1){
-		
-			if(!validaRequerido($_POST['pregunta'])){
-				echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
-				die();
-			}
-			if(!validaRequerido($_POST['respuesta'])){
-				echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
-				die();
-			}
+		if(!validaRequerido($_POST['respuesta'])){
+			echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
+			die();
+		}
 	
-			if(!validaRequerido($_POST['tema'])){
-				echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
+		if(!validaRequerido($_POST['tema'])){
+			echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
+			die();
+		}
+	
+		if(!trim($_POST['complejidad']) == ''){
+			if(!validarExpresion($_POST['complejidad'], '/^(1|2|3|4|5){1}$/')){
+				echo '<br> <br> <p> Error: La complejidad debe ser un número del 1 al 5. </p> <br> <br>';
 				die();
 			}
-	
-			if(!trim($_POST['complejidad']) == ''){
-				if(!validarExpresion($_POST['complejidad'], '/^(1|2|3|4|5){1}$/')){
-					echo '<br> <br> <p> Error: La complejidad debe ser un número del 1 al 5. </p> <br> <br>';
-					die();
-				}
-			}
+		}
 			
-			$sql="INSERT INTO pregunta(Pregunta, Respuesta, Complejidad, Tema ,Correo) VALUES ('$_POST[pregunta]', '$_POST[respuesta]', '$_POST[complejidad]', '$_POST[tema]', '$email' )";
+		$sql="INSERT INTO pregunta(Pregunta, Respuesta, Complejidad, Tema ,Correo) VALUES ('$_POST[pregunta]', '$_POST[respuesta]', '$_POST[complejidad]', '$_POST[tema]', '$email' )";
 
-			if (!mysqli_query($link ,$sql)){
+		if (!mysqli_query($link ,$sql)){
 				die('Error: ' . mysqli_error($link));
-			}
+		}
 			
 			echo "<p> Pregunta añadida. </p>";
 			//echo '<br> <br> <p> <a href="VerPreguntasXML.php?email=' . $email. '"> Ver preguntas en formato XML </a> </p> <br>';
@@ -95,10 +91,10 @@
 				die('Error: ' . mysqli_error($link));
 			}
 			
-		}
-		else{
-			echo "<p> <FONT COLOR=RED>Datos incorrectos !!</FONT> </p>";
-		}
+		//}
+		//else{
+		//	echo "<p> <FONT COLOR=RED>Datos incorrectos !!</FONT> </p>";
+		//}
 		
 		mysqli_close($link);
 ?>

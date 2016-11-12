@@ -1,5 +1,13 @@
 <?php
 
+	session_start();
+	if(!isset($_SESSION['email'])){
+		header("location:Login.php");
+	}
+	if($_SESSION['profesor']=='SI'){
+		header("location:Login.php");
+	}
+
 	$link= mysqli_connect("localhost", "root", "", "quiz");
 	//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
 	
@@ -18,7 +26,7 @@
 		echo '<tr><td>' . $row['Pregunta'] .'</td><td>' . $comp.'</td><td>'. $row['Correo'].'</td></tr>';
 	}
 	echo '</table>';
-	$email = $_GET['email'];
+	$email = $_SESSION['email'];
 	//echo ' <br> <br> <p> <a href="layout2.php?email=' . $email . '"> Pagina principal </a> </p>';
 	
 	mysqli_free_result($preguntas);

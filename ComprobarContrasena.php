@@ -11,7 +11,7 @@
 
 	//registramos la función que vamos a implementar
 	$server->register('comprobar', array('pass'=>'xsd:string'), array('resp'=>'xsd:string'),$ns);
-
+e
 	//implementamos la función
 	function comprobar ($pass){
 

@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['email'])){
+		header("location:Login.php");
+	}
+	if($_SESSION['profesor']=='SI'){
+		header("location:Login.php");
+	}
+?>
 <HTML>
 <HEAD>
 	<title> Editar preguntas</title>
@@ -9,7 +18,7 @@
 	<script>
 		$(document).ready(function(){
 			setInterval(function(){ 
-				$.get("preguntasUsuario.php?email=" + $("#email").val(), 
+				$.get("preguntasUsuario.php", 
 					function (data) {
            				$("#divR").html(data);	
            			});
@@ -20,7 +29,7 @@
 	<script language = "javascript">
 
 		function verP(){
-			var emailUsuario = document.getElementById("email").value;
+			//var emailUsuario = document.getElementById("email").value;
 			xmlhttp = new XMLHttpRequest();
 			xmlhttp.onreadystatechange = function(){
 				switch(xmlhttp.readyState) { 
@@ -37,18 +46,18 @@
 					break;
 				}
 			}
-			xmlhttp.open("GET","verPreguntas2.php?email=" + emailUsuario,true);
+			xmlhttp.open("GET","verPreguntas2.php",true);
 			xmlhttp.send();
 		}
 	
 		function insertarP(){
 			if (verificar()){
-				var emailUsuario = document.getElementById("email").value;
+				//var emailUsuario = document.getElementById("email").value;
 				var pregunta = document.getElementById("preg").value;
 				var respuesta = document.getElementById("resp").value;
 				var complejidad = document.getElementById("comp").value;
 				var tema =	document.getElementById("tema").value;
-				var pass =	document.getElementById("pass").value;
+				//var pass =	document.getElementById("pass").value;
 				xmlhttp = new XMLHttpRequest();
 				xmlhttp.onreadystatechange = function(){
 				switch(xmlhttp.readyState) {
@@ -67,7 +76,7 @@
 			}
 				xmlhttp.open("POST","InsertarPregunta.php",true);
 				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");	
-				var datos = 'pregunta='+ pregunta +'&respuesta='+ respuesta +'&complejidad='+ complejidad +'&tema='+ tema +'&email='+ emailUsuario +'&pass='+ pass;
+				var datos = 'pregunta='+ pregunta +'&respuesta='+ respuesta +'&complejidad='+ complejidad +'&tema='+ tema;
 				xmlhttp.send(datos);
 			}			
 		}
@@ -77,7 +86,7 @@
 			var respuesta = document.getElementById("resp").value;
 			var complejidad = document.getElementById("comp").value;
 			var tema =	document.getElementById("tema").value;
-			var pass =	document.getElementById("pass").value;
+			//var pass =	document.getElementById("pass").value;
 			if (pregunta.length == 0){
 				alert("El campo de pregunta está vacío");
 				return false;
@@ -90,10 +99,10 @@
 				alert("El campo del tema está vacío");
 				return false;
 			}
-			if (pass.length < 6){
-				alert("Contraseña no valida");
-				return false;
-			}
+			//if (pass.length < 6){
+			//	alert("Contraseña no valida");
+			//	return false;
+			//}
 			if (!(complejidad.length == 0)){
 				if (!/^(1|2|3|4|5){1}$/.test(complejidad)){
 					alert("Complejidad no valida: debe ser un numero del 1 al 5");
@@ -121,9 +130,6 @@
 			<INPUT TYPE="TEXT" NAME="complejidad" id="comp"><BR>
 			Tema* <BR>
 			<INPUT TYPE="TEXT" NAME="tema" id="tema" required><BR>
-			<input type="hidden" id="email" name="email" value="<?php echo $_REQUEST['email']; ?>" /><br>
-			Password* <BR>
-			<INPUT TYPE="PASSWORD" NAME="pass" id="pass" required><BR>
 			<br><br>
 			<INPUT TYPE="button" value="InsertarPregunta" onClick="javascript:insertarP()">
 			<INPUT TYPE="button" value="VerPreguntas" onClick="javascript:verP()">
@@ -134,10 +140,7 @@
 		<div id="divI">	</div> 
 		<br><br>
 		<div id="divV">	</div> 
-		<?php
-			$email = $_GET['email']; 
-			echo '<p><a href="layout2.php?email='. $email. '">P&aacute;gina principal</a></p>';
-		?>
+		<p><a href="layout2.php">P&aacute;gina principal</a></p>
 	</div>
 </BODY>
 </HTML>
