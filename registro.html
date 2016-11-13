@@ -7,6 +7,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
 	<script type="text/javascript" src="https://gc.kis.scr.kaspersky-labs.com/1B74BD89-2A22-4B93-B451-1C9E1052A0EC/main.js" charset="UTF-8"></script><script>
+
+		var passSeguro = false;
+		var passIgual = false;
+		var matriculado = false;
+
 		function vervalores(){
 			var sAux="";
 			var frm = document.getElementById("registro");
@@ -34,12 +39,20 @@
 					var resultado = xmlhttp.responseText;
 					if(valido.localeCompare(resultado) == 0){
 						document.getElementById("correoSW").innerHTML = "El correo es v&aacute;lido, puede continuar.";
-						document.getElementById("submit").disabled = false;
+						matriculado = true;
 					}
 					else{
 						document.getElementById("correoSW").innerHTML = "Lo sentimos, este correo no est&aacute; matriculado en Ingenier&iacute;a del Software.";
-						document.getElementById("submit").disabled = true; 
+						matriculado = false;
 					}
+
+					if (matriculado && passSeguro && passIgual){
+						document.getElementById("submit").disabled = false;
+					}
+					else{
+						document.getElementById("submit").disabled = true;
+					}
+
 					break;
 				}
 			}
@@ -65,13 +78,21 @@
 					var valido = "VALIDA";
 					var resultado = xmlhttp.responseText;
 					if(valido.localeCompare(resultado) == 0){
-						document.getElementById("passValida").innerHTML = "La contrase&ntilde;a es suficientemente segura, puede continuar.";
-						document.getElementById("submit").disabled = false;
+						document.getElementById("passValida").innerHTML = "La contrase&ntilde;a es suficientemente segura, puede continuar..";
+						passSeguro = true;;
 					}
 					else{
 						document.getElementById("passValida").innerHTML = "Lo sentimos, esta contrase&ntilde;a no es lo suficientemente segura.";
-						document.getElementById("submit").disabled = true; 
+						passSeguro = false;
 					}
+
+					if (matriculado && passSeguro && passIgual){
+						document.getElementById("submit").disabled = false;
+					}
+					else{
+						document.getElementById("submit").disabled = true;
+					}
+
 					break;
 				}
 			}
@@ -83,12 +104,19 @@
 			var passwordUsuario = document.getElementById("password").value;
 			var passwordUsuario2 = document.getElementById("password2").value;
 			if (passwordUsuario.localeCompare(passwordUsuario2) == 0){
-				document.getElementById("passValida2").innerHTML = "Las contrase&ntilde;as coinciden, puede continuar.";
-				document.getElementById("submit").disabled = false; 
+				document.getElementById("passValida2").innerHTML = "Las contrase&ntilde;as coinciden, puede continuar..";
+				passIgual = true;
 			}
 			else{
 				document.getElementById("passValida2").innerHTML = "Lo sentimos, las contrase&ntilde;as no coinciden.";
-				document.getElementById("submit").disabled = true; 
+				passIgual = false;
+			}
+
+			if (matriculado && passSeguro && passIgual){
+				document.getElementById("submit").disabled = false;
+			}
+			else{
+				document.getElementById("submit").disabled = true;
 			}
 		}
 		</script>

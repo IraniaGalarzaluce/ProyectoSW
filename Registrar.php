@@ -71,14 +71,29 @@
 		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
 		die();
 	}
+
+	if(!validaRequerido($_POST['Password2'])){
+		echo '<br> <br> <p> Error: Faltan campos obligatorios por rellenar. </p> <br> <br>';
+		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
+		die();
+	}
+
 	if(!validarExpresion($_POST['Password'], '/^.{6,}$/')){
 		echo '<br> <br> <p> Error: La contraseña debe de tener al menos 6 caracteres. </p> <br> <br>';
 		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
 		die();
 	}
 
-	$soapclient2 = new nusoap_client('http://localhost/ProyectoSW/ComprobarContrasena.php?wsdl',true);
 	$pass = $_POST['Password'];
+	$pass2 = $_POST['Password2'];
+
+	if($pass!=$pass2){
+		echo '<br> <br> <p> Error: La contraseñas no coinciden.</p> <br> <br>';
+		echo "<p> <a href='registro.html'> Volver a registro </a> </p>";
+		die();
+	}
+
+	$soapclient2 = new nusoap_client('http://localhost/ProyectoSW/ComprobarContrasena.php?wsdl',true);
 	$result2 = $soapclient2->call('comprobar',  array('pass'=>$pass));
 	if (strcmp($result2, "INVALIDA") == 0){
 		echo '<br> <br> <p> Error: La contraseña no es lo suficientemente segura. Vuelva a intentarlo por favor. </p> <br> <br>';

@@ -12,5 +12,4 @@
 	$result = $soapclient->call('comprobar', array('x'=>$email));
 	echo $result;
 	
-	
 ?>

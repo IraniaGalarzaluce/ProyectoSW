@@ -78,17 +78,20 @@
 
 	if(isset($_POST['codigo'])){
 
+		$link = mysqli_connect("localhost", "root", "", "quiz");
+		//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
+	
 		function validarExpresion($variable, $expresion){
-				$validar = array(
-						 "options" => array("regexp"=>$expresion)
-					);
-				if(!filter_var($variable, FILTER_VALIDATE_REGEXP, $validar)){
-					return false;
-				}
-				else{
-					return true;
-				}
+			$validar = array(
+				 "options" => array("regexp"=>$expresion)
+			 );
+			if(!filter_var($variable, FILTER_VALIDATE_REGEXP, $validar)){
+				return false;
 			}
+			else{
+				return true;
+			}
+		}
 			
 		function validaRequerido($valor){
 			if(trim($valor) == ''){
@@ -103,22 +106,40 @@
 			echo '<br> <br> <p> <font color=red> Error: Rellene el codigo de pregunta por favor </font> </p> <br> <br>';
 			die();
 		}
-	
+		
+		if(validaRequerido($_POST['pregunta'])){
+			$sql="UPDATE pregunta set Pregunta='$_POST[pregunta]' where Codigo='$_POST[codigo]'";
+			if (!mysqli_query($link ,$sql)){
+				die('Error: ' . mysqli_error($link));
+			}
+		} 
+		
+		if(validaRequerido($_POST['respuesta'])){
+			$sql="UPDATE pregunta set Respuesta='$_POST[respuesta]' where Codigo='$_POST[codigo]'";
+			if (!mysqli_query($link ,$sql)){
+				die('Error: ' . mysqli_error($link));
+			}
+		}
+			
 		if(!trim($_POST['complejidad']) == ''){
 			if(!validarExpresion($_POST['complejidad'], '/^(1|2|3|4|5){1}$/')){
 				echo '<br> <br> <p> <font color=red> Error: La complejidad debe ser un número del 1 al 5. </font> </p> <br> <br>';
 				die();
 			}
+			else{
+				$sql="UPDATE pregunta set Complejidad='$_POST[complejidad]' where Codigo='$_POST[codigo]'";
+				if (!mysqli_query($link ,$sql)){
+					die('Error: ' . mysqli_error($link));
+				}
+			}
 		}
-
-		$link = mysqli_connect("localhost", "root", "", "quiz");
-		//$link = mysqli_connect("mysql.hostinger.es", "u531741362_root", "iratiania", "u531741362_quiz");
-
-		$sql="UPDATE pregunta set Pregunta='$_POST[pregunta]', Respuesta='$_POST[respuesta]', Complejidad='$_POST[complejidad]', Tema='$_POST[tema]' where Codigo='$_POST[codigo]'";
-
-		if (!mysqli_query($link ,$sql)){
-			die('Error: ' . mysqli_error($link));
-		}
+		
+		if(validaRequerido($_POST['tema'])){
+			$sql="UPDATE pregunta set Tema='$_POST[tema]' where Codigo='$_POST[codigo]'";
+			if (!mysqli_query($link ,$sql)){
+				die('Error: ' . mysqli_error($link));
+			}
+		} 
 		
 		$_SESSION['pregunta']="Modificada";
 
