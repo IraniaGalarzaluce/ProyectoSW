@@ -2,16 +2,14 @@
 	//incluimos la clase nusoap.php
 	require_once('lib/nusoap.php');
 	require_once('lib/class.wsdlcache.php');
-	
+
 	//creamos el objeto de tipo soapclient.
-	//http://www.mydomain.com/server.php se refiere a la url
-	//donde se encuentra el servicio SOAP que vamos a utilizar.
 	$soapclient = new nusoap_client('http://localhost/ProyectoSW/ComprobarContrasena.php?wsdl',true);
-	
+
 	$pass = $_GET['pass'];
 	$result = $soapclient->call('comprobar',  array('pass'=>$pass));
 	echo $result;
-	
+
 	// AÑADIR ESTE CODIGO AL FINAL DEL PHP QUE CONTIENE LA LLAMADA AL SERVICIO
 	//Codigo para debugear y ver la respuesta y posibles errores, comentar cuando se comprueba que está correcto el servicio y la llamada
 	//$err = $soapclient->getError();
@@ -28,7 +26,7 @@
 	//echo htmlspecialchars($soapclient->debug_str, ENT_QUOTES) .'</b></p>';
 
 	//Comentar hasta aquí
- 
+
 	//if($soapclient->fault){
    // 	echo "FAULT: <p>Code: (".$soapclient->faultcode.")</p>";
    // 	echo "String: ".$soapclient->faultstring;

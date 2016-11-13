@@ -10,6 +10,11 @@ p{
 	text-align: center;
 }
 
+div.mayus p{
+	font: small-caps bold 140% serif;
+	text-align: center; 
+}
+
 table{
 	margin: 0 auto;
 }
